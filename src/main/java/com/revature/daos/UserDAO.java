@@ -78,7 +78,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public List<User> findFollowees(User u) {
 		Session ses = HibernateUtil.getSession();
-		List<User> all = (List<User>)ses.createNativeQuery("SELECT * FROM users u JOIN user_follower f ON u.userid=" + u.getFollowerid(), User.class).list();
+		List<User> all = (List<User>)ses.createNativeQuery("SELECT * FROM users u JOIN user_follower f ON f.followerid=" + u.getUserid(), User.class).list();
 		return all;
 	}
 

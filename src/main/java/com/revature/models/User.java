@@ -23,7 +23,6 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userid;
-	private int followerid;
 	@Column(nullable=false, unique=true)
 	private String username;
 	@Column(nullable=false)
@@ -39,6 +38,7 @@ public class User implements Serializable{
 	@Column(nullable=false)
 	private int gender;
 	private byte[] picture;
+	
 	@ManyToMany
 	@JoinTable(name="user_follower",
 	 joinColumns=@JoinColumn(name="userid"),
@@ -53,12 +53,52 @@ public class User implements Serializable{
 	)
 	private List<User> followees;
 
-	public int getFollowerid() {
-		return followerid;
+	
+	
+	public User(int userid, String username, int password, String firstName, String lastName, Date dateOfBirth,
+			String description, int gender, byte[] picture, List<User> followers, List<User> followees) {
+		super();
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.description = description;
+		this.gender = gender;
+		this.picture = picture;
+		this.followers = followers;
+		this.followees = followees;
 	}
 
-	public void setFollowerid(int followerid) {
-		this.followerid = followerid;
+	public User(String username, int password, String firstName, String lastName, Date dateOfBirth, String description,
+			int gender, byte[] picture, List<User> followers, List<User> followees) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.description = description;
+		this.gender = gender;
+		this.picture = picture;
+		this.followers = followers;
+		this.followees = followees;
+	}
+	
+	
+
+	public User(String username, int password, String firstName, String lastName, Date dateOfBirth, String description,
+			int gender, byte[] picture) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.dateOfBirth = dateOfBirth;
+		this.description = description;
+		this.gender = gender;
+		this.picture = picture;
 	}
 
 	public List<User> getFollowers() {
@@ -76,73 +116,6 @@ public class User implements Serializable{
 	public void setFollowees(List<User> followees) {
 		this.followees = followees;
 	}
-
-	
-	public User() {
-		// TODO Auto-generated constructor stub
-	}
-
-	
-
-	public User(int userid, int followerid, String username, int password, String firstName, String lastName,
-			Date dateOfBirth, String description, int gender, byte[] picture) {
-		super();
-		this.userid = userid;
-		this.followerid = followerid;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.description = description;
-		this.gender = gender;
-		this.picture = picture;
-	}
-
-	public User(int userid, int followerid, String username, int password, String firstName, String lastName,
-			Date dateOfBirth, String description, int gender, byte[] picture, List<User> followers,
-			List<User> followees) {
-		super();
-		this.userid = userid;
-		this.followerid = followerid;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.description = description;
-		this.gender = gender;
-		this.picture = picture;
-		this.followers = followers;
-		this.followees = followees;
-	}
-	
-	
-
-	public User(String username, int password, String firstName, String lastName, Date dateOfBirth, String description,
-			int gender, byte[] picture, List<User> followers, List<User> followees) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.description = description;
-		this.gender = gender;
-		this.picture = picture;
-		this.followers = followers;
-		this.followees = followees;
-	}
-
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", followerid=" + followerid + ", username=" + username + ", password="
-				+ password + ", firstName=" + firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth
-				+ ", description=" + description + ", gender=" + gender + ", picture=" + Arrays.toString(picture)
-				+ ", followers=" + followers + ", followees=" + followees + "]";
-	}
-	
-
 	public int getUserid() {
 		return userid;
 	}
@@ -218,6 +191,18 @@ public class User implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", description=" + description
+				+ ", gender=" + gender + ", picture=" + Arrays.toString(picture) + ", followers=" + followers
+				+ ", followees=" + followees + "]";
+	}
 
 	@Override
 	public int hashCode() {
@@ -227,7 +212,6 @@ public class User implements Serializable{
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + ((followees == null) ? 0 : followees.hashCode());
-		result = prime * result + followerid;
 		result = prime * result + ((followers == null) ? 0 : followers.hashCode());
 		result = prime * result + gender;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
@@ -267,8 +251,6 @@ public class User implements Serializable{
 				return false;
 		} else if (!followees.equals(other.followees))
 			return false;
-		if (followerid != other.followerid)
-			return false;
 		if (followers == null) {
 			if (other.followers != null)
 				return false;
@@ -294,7 +276,6 @@ public class User implements Serializable{
 			return false;
 		return true;
 	}
-	
 	
 	
 }
