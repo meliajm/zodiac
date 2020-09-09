@@ -2,7 +2,11 @@ package com.revature.daos;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.revature.models.User;
+import com.revature.util.HibernateUtil;
 
 public class UserDAO implements IUserDAO {
 
@@ -12,50 +16,70 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public boolean insert(User u) {
-		
-		return false;
+		Session ses = HibernateUtil.getSession();
+
+			Transaction tx = ses.beginTransaction();
+			
+			ses.save(u);
+			tx.commit();
+			return true;
+
 	}
 
 	@Override
 	public boolean update(User u) {
-		// TODO Auto-generated method stub
-		return false;
+		Session ses = HibernateUtil.getSession();
+		try {
+			Transaction tx = ses.beginTransaction();
+			
+			ses.merge(u);
+			tx.commit();
+			return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	@Override
 	public boolean delete(int id) {
-		// TODO Auto-generated method stub
+		Session ses = HibernateUtil.getSession();
 		return false;
 	}
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		List<User> all = ses.createQuery("FROM User", User.class).list();
+		return all;
 	}
 
 	@Override
 	public User findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		User u = ses.get(User.class, id);
+		return u;
 	}
 
 	@Override
 	public User findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		List<User> u = (List<User>)ses.createQuery("FROM User u WHERE u.username = '" + username + "' ", User.class).list();
+		return (User) u;
 	}
 
 	@Override
 	public List<User> findFollowers(User u) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		List<User> all = (List<User>)ses.createNativeQuery("SELECT * FROM users u JOIN user_follower f ON u.userid = " + u.getUserid(), User.class).list();
+		return all;
 	}
 
 	@Override
 	public List<User> findFollowees(User u) {
-		// TODO Auto-generated method stub
-		return null;
+		Session ses = HibernateUtil.getSession();
+		List<User> all = (List<User>)ses.createNativeQuery("SELECT * FROM users u JOIN user_follower f ON u.userid=" + u.getFollowerid(), User.class).list();
+		return all;
 	}
 
 }

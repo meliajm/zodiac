@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,12 +24,19 @@ public class User implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userid;
 	private int followerid;
+	@Column(nullable=false, unique=true)
 	private String username;
+	@Column(nullable=false)
 	private int password;
+	@Column(nullable=false)
 	private String firstName;
+	@Column(nullable=false)
 	private String lastName;
+	@Column(nullable=false)
 	private Date dateOfBirth;
+	@Column(length=250)
 	private String description;
+	@Column(nullable=false)
 	private int gender;
 	private byte[] picture;
 	@ManyToMany
@@ -37,6 +45,13 @@ public class User implements Serializable{
 	 inverseJoinColumns=@JoinColumn(name="followerid")
 	)
 	private List<User> followers;
+	
+	@ManyToMany
+	@JoinTable(name="user_follower",
+	 joinColumns=@JoinColumn(name="followerid"),
+	 inverseJoinColumns=@JoinColumn(name="userid")
+	)
+	private List<User> followees;
 
 	public int getFollowerid() {
 		return followerid;
@@ -62,13 +77,6 @@ public class User implements Serializable{
 		this.followees = followees;
 	}
 
-	@ManyToMany
-	@JoinTable(name="user_follower",
-	 joinColumns=@JoinColumn(name="followerid"),
-	 inverseJoinColumns=@JoinColumn(name="userid")
-	)
-	private List<User> followees;
-	
 	
 	public User() {
 		// TODO Auto-generated constructor stub
