@@ -1,5 +1,6 @@
 package com.revature.daos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -55,6 +56,28 @@ public class UserDAO implements IUserDAO{
 		Session ses = HibernateUtil.getSession();
 		Users u = ses.get(Users.class, id);
 		return u;
+	}
+	
+	public boolean addFollowers(Users u) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = null;
+
+		try {
+			tx = ses.beginTransaction();
+			
+			List<Users> followers = new ArrayList<Users>();
+			followers.add(u);
+			
+			
+			
+			tx.commit();
+			
+			return true;
+		} catch (Exception e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 }
