@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
-<hibernate-configuration> 
-    <session-factory>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">password</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://javafs200803.czjvsq707ohh.us-east-2.rds.amazonaws.com:5432/zodiac</property>
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-<!--         <property name="hibernate.default_schema">hibernate</property>
- -->
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
-        <property name="hibernate.hdm2ddl.auto">update</property>
-
-        <mapping class="com.revature.models.User"/>
-
-    </session-factory>
-
+<hibernate-configuration>
+<session-factory>
+<!-- JDBC Config -->
+<property name="hibernate.connection.username">postgres</property>
+<property name="hibernate.connection.password">password</property>
+<property name="hibernate.connection.url">jdbc:postgresql://javafs200803.czjvsq707ohh.us-east-2.rds.amazonaws.com:5432/postgres2</property>
+<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+<!-- Additional Hibernate Properties -->
+<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+<!-- This will print the sql queries hibernate makes to the console -->
+<!--  <property name="hibernate.default_schema">hibernate</property>-->
+<property name="hibernate.show_sql">true</property>
+<property name="hibernate.format_sql">true</property>
+<property name="hibernate.hbm2ddl.auto">create</property>
+<property name="hibernate.event.merge.entity_copy_observer">allow</property>
+<!-- Mappings -->
+<mapping class="com.revature.models.Users"/>
+</session-factory>
 </hibernate-configuration>
