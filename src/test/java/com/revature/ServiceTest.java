@@ -23,28 +23,41 @@ public class ServiceTest {
 	
 	@Test
 	public void insert() {
-//		Users u = new Users("JohnDoe", 1216985755, "John", "Doe", new Date(), "", 1, null);
-//		Users u2 = new Users("JohnnyDoe", 1216985755, "Johnny", "Doe", new Date(), "", 1, null);
-//		boolean insert = uDao.insert(u);
-//		boolean insert2 = uDao.insert(u2);
-//		assertFalse(insert);
-//		assertTrue(insert2);
+		Users u = new Users("JohnDoe", 1216985755, "John", "Doe", new Date(), "", 1, null);
+//		Users u2 = new Users("JaneDoe", 1216985755, "Jane", "Doe", new Date(), "", 2, null);
+//		Users u3 = new Users("JillSmith", 1216985755, "Jill", "Smith", new Date(), "", 2, null);
+//		Users u4 = new Users("JoeSmith", 1216985755, "Joe", "Smith", new Date(), "", 1, null);
+//		Users u5 = new Users("DanSmith", 1216985755, "Dan", "Smith", new Date(), "", 1, null);
+		boolean insert1 = uDao.insert(u);
+		//uDao.insert(u2);uDao.insert(u3);uDao.insert(u4);uDao.insert(u5);
+		assertFalse(insert1);
 	}
 	
 	@Test
 	public void update() {
 		System.out.println("UPDATE:");
 		Users u = new Users(5, "DanielWilliam", 1216985755, "Daniel", "Williams", new Date(), "", 1, null);
+		Users u2 = new Users("DanielWilliam", 1216985755, "Daniel", "Williams", new Date(), "", 1, null);
 		
 		boolean update = uDao.update(u);
 		assertTrue(update);
+		boolean update2 = uDao.update(u2);
+		assertFalse(update2);
 	}
 	
 	@Test
 	public void add() {
 		System.out.println("ADD:");
-		Users u = uDao.findById(2);
-		Users u2 = uDao.findById(3);
+		Users u = uDao.findById(1);
+		Users u2 = uDao.findById(2);
+		Users u3 = uDao.findById(3);
+		Users u4 = uDao.findById(4);
+		Users u5 = uDao.findById(5);
+		
+		uDao.addFollowers(u, u3);
+		uDao.addFollowers(u, u4);
+		uDao.addFollowers(u3, u2);
+		uDao.addFollowers(u3, u4);
 		
 		boolean add = uDao.addFollowers(u, u2);
 		assertTrue(add);
@@ -55,17 +68,18 @@ public class ServiceTest {
 	@Test
 	public void remove() {
 		System.out.println("REMOVE:");
-		Users u = uDao.findById(3);
-		Users u2 = uDao.findById(4);
+		Users u = uDao.findById(1);
+		Users u2 = uDao.findById(2);
 		
 		boolean remove = uDao.removeFollowers(u, u2);
 		assertTrue(remove);
 		boolean remove2 = uDao.removeFollowers(u2, u2);
-		assertTrue(remove2);
+		assertFalse(remove2);
 	}
 	
 	@Test
 	public void follower() {
+		System.out.println("FOLLOWING:");
 		List<Users> user1 = uDao.findFollowers(1);
 		assertNotNull(user1);
 		
@@ -75,6 +89,7 @@ public class ServiceTest {
 	
 	@Test
 	public void followee() {
+		System.out.println("FOLLOWED BY:");
 		List<Users> user1 = uDao.findFollowees(4);
 		assertNotNull(user1);
 		
@@ -84,6 +99,7 @@ public class ServiceTest {
 
 	@Test
 	public void select() {
+		System.out.println("SELECT:");
 		Users u1 = uDao.findById(5);
 		assertNotNull(u1);
 		

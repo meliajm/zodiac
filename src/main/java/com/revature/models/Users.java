@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,10 +43,10 @@ public class Users implements Serializable{
 	@JoinTable(name="user_follower",
 	 joinColumns=@JoinColumn(name="followeeid"),
 	 inverseJoinColumns=@JoinColumn(name="followerid"))
-	private List<Users> followers = new ArrayList<Users>();
+	private Set<Users> followers = new HashSet<Users>();
 	
 	@ManyToMany(mappedBy = "followers")
-    private List<Users> followees = new ArrayList<Users>();
+    private Set<Users> followees = new HashSet<Users>();
 	
 	public Users() {}
 
@@ -157,11 +158,11 @@ public class Users implements Serializable{
 		this.picture = picture;
 	}
 
-	public List<Users> getFollowers() {
+	public Set<Users> getFollowers() {
 		return followers;
 	}
 
-	public void setFollowers(List<Users> followers) {
+	public void setFollowers(Set<Users> followers) {
 		this.followers = followers;
 	}
 

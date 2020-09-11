@@ -27,7 +27,7 @@ public class UserDAO implements IUserDAO{
 			return true;
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
-			e.printStackTrace();
+			System.out.println(e);
 			return false;
 		}
 	}
@@ -35,10 +35,20 @@ public class UserDAO implements IUserDAO{
 	@Override
 	public boolean update(Users u) {
 		Session ses = HibernateUtil.getSession();
-			
-			ses.update(u);
+		Transaction tx = null;
 
+		try {
+			tx = ses.beginTransaction();
+			
+			ses.merge(u);
+
+			tx.commit();
 			return true;
+		} catch (Exception e) {
+			if (tx!=null) tx.rollback();
+			System.out.println(e);
+			return false;
+		}
 
 	}
 	
