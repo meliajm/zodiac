@@ -1,6 +1,5 @@
 package com.revature.daos;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -58,18 +57,17 @@ public class UserDAO implements IUserDAO{
 		return u;
 	}
 	
-	public boolean addFollowers(Users u) {
+	@Override
+	public boolean addFollowers(Users u, Users u2) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = null;
 
 		try {
 			tx = ses.beginTransaction();
 			
-			List<Users> followers = new ArrayList<Users>();
-			followers.add(u);
+			u.getFollowers().add(u2);
 			
-			
-			
+			ses.saveOrUpdate(u);
 			tx.commit();
 			
 			return true;
@@ -79,5 +77,41 @@ public class UserDAO implements IUserDAO{
 			return false;
 		}
 	}
+	
+	//FIND WHO YOU'RE FOLLOWING
+	@Override
+	public List<Users> findFollowers(int id){
+		Session ses = HibernateUtil.getSession();
+		String hql = "SELECT follow FROM Users u JOIN u.followers follow WHERE u.id = :u";
+		
+		@SuppressWarnings("unchecked")
+		Query<Users> query = ses.createQuery(hql).setParameter("u", id);
+
+		List<Users> all = query.list();
+
+		if(all.isEmpty()) {
+			return null;
+		} 
+		return all;
+	}
+	
+	//FIND WHOSE FOLLOWS YOU
+	@Override
+	public List<Users> findFollowees(int id){
+		Session ses = HibernateUtil.getSession();
+		String hql = "SELECT follow FROM Users u JOIN u.followees follow WHERE u.id = :u";
+		
+		@SuppressWarnings("unchecked")
+		Query<Users> query = ses.createQuery(hql).setParameter("u", id);
+
+		List<Users> all = query.list();
+
+		if(all.isEmpty()) {
+			return null;
+		} 
+		return all;
+	}
+	
+	
 	
 }

@@ -1,6 +1,5 @@
 package com.revature;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,33 +21,45 @@ public class Driver {
 		Users u5 = new Users("DanSmith", 1216985755, "Dan", "Smith", new Date(), "", 1, null);
 		
 		//Insert
-		uDao.insert(u);uDao.insert(u2);uDao.insert(u3);uDao.insert(u4);uDao.insert(u5);
+//		uDao.insert(u);uDao.insert(u2);uDao.insert(u3);uDao.insert(u4);uDao.insert(u5);
 		
 		//Find All 
+//		System.out.println("\n Find All");
+//		List<Users> user = uDao.findAll();
+//		for(Users us : user) {System.out.println(us);}
+		
+		//Update
+//		System.out.println("\n Update");
+//		Users up5 = new Users(5, "DannySmith", 1216985755, "Dan", "Smith", new Date(), "", 1, null);
+//		uDao.update(up5);
+		
+		//Find By ID
+//		System.out.println("\n Find By ID");
+//		Users u1 = uDao.findById(5);
+//		System.out.println(u1);
+//		
+		//Add Followers
+		System.out.println("\n Add Followers");
+		uDao.addFollowers(u, u3);
+		uDao.addFollowers(u, u4);
+		uDao.addFollowers(u2, u4);
+		uDao.addFollowers(u3, u4);
+		uDao.addFollowers(u4, u5);
+		
 		System.out.println("\n Find All");
 		List<Users> user = uDao.findAll();
 		for(Users us : user) {System.out.println(us);}
 		
-		//Update
-		System.out.println("\n Update");
-		Users up5 = new Users(5, "DannySmith", 1216985755, "Dan", "Smith", new Date(), "", 1, null);
-		uDao.update(up5);
+		System.out.println("\n Following");
+		List<Users> user2 = uDao.findFollowers(3);
+		for(Users us : user2) {System.out.println(us);}
 		
-		//Find By ID
-		System.out.println("\n Find By ID");
-		Users u1 = uDao.findById(5);
-		System.out.println(u1);
+		System.out.println("\n FollowBy");
+		List<Users> user3 = uDao.findFollowees(3);
+		for(Users us : user3) {System.out.println(us);}
 		
-		//Add Followers
-		System.out.println("\n Add Followers");
-		List<Users> followers = new ArrayList<Users>();
-		followers.add(u2);
-		followers.add(u4);
 		
-		Users f1 = new Users(1, followers);
-		uDao.update(f1);
 		
-		System.out.println("Select by id:" + u);
 	}
 
 }

@@ -1091,3 +1091,3353 @@
         users0_.username as username9_1_ 
     from
         Users users0_
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKt4le8u8m0ap3igs3u8t3ki73t
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKn3jqqltf4yexrmhl4hq9i6fyw
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FKkkxop2s08dkby8wjk00mm9xit
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_followee cascade
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_followee (
+       followeeid int4 not null,
+        userid int4 not null
+    )
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       userid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKt4le8u8m0ap3igs3u8t3ki73t 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKn3jqqltf4yexrmhl4hq9i6fyw 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 18:38:59 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FKkkxop2s08dkby8wjk00mm9xit 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:39:00 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_2_,
+        users0_.dateOfBirth as dateofbi2_2_,
+        users0_.description as descript3_2_,
+        users0_.firstName as firstnam4_2_,
+        users0_.gender as gender5_2_,
+        users0_.lastName as lastname6_2_,
+        users0_.password as password7_2_,
+        users0_.picture as picture8_2_,
+        users0_.username as username9_2_ 
+    from
+        Users users0_
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKt4le8u8m0ap3igs3u8t3ki73t
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKn3jqqltf4yexrmhl4hq9i6fyw
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FKkkxop2s08dkby8wjk00mm9xit
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_followee cascade
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_followee (
+       followeeid int4 not null,
+        userid int4 not null
+    )
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       userid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKt4le8u8m0ap3igs3u8t3ki73t 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKn3jqqltf4yexrmhl4hq9i6fyw 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 18:42:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FKkkxop2s08dkby8wjk00mm9xit 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:42:14 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:42:14 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:42:14 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:42:14 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:42:14 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:42:14 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_2_,
+        users0_.dateOfBirth as dateofbi2_2_,
+        users0_.description as descript3_2_,
+        users0_.firstName as firstnam4_2_,
+        users0_.gender as gender5_2_,
+        users0_.lastName as lastname6_2_,
+        users0_.password as password7_2_,
+        users0_.picture as picture8_2_,
+        users0_.username as username9_2_ 
+    from
+        Users users0_
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKt4le8u8m0ap3igs3u8t3ki73t
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKn3jqqltf4yexrmhl4hq9i6fyw
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FKkkxop2s08dkby8wjk00mm9xit
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_followee cascade
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_followee (
+       followeeid int4 not null,
+        userid int4 not null
+    )
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       userid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKt4le8u8m0ap3igs3u8t3ki73t 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKn3jqqltf4yexrmhl4hq9i6fyw 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 18:45:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FKkkxop2s08dkby8wjk00mm9xit 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:45:08 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_2_,
+        users0_.dateOfBirth as dateofbi2_2_,
+        users0_.description as descript3_2_,
+        users0_.firstName as firstnam4_2_,
+        users0_.gender as gender5_2_,
+        users0_.lastName as lastname6_2_,
+        users0_.password as password7_2_,
+        users0_.picture as picture8_2_,
+        users0_.username as username9_2_ 
+    from
+        Users users0_
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKt4le8u8m0ap3igs3u8t3ki73t
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       drop constraint FKn3jqqltf4yexrmhl4hq9i6fyw
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FKkkxop2s08dkby8wjk00mm9xit
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_followee cascade
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 18:46:42 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_followee (
+       followeeid int4 not null,
+        userid int4 not null
+    )
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       userid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKt4le8u8m0ap3igs3u8t3ki73t 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_followee 
+       add constraint FKn3jqqltf4yexrmhl4hq9i6fyw 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FKkkxop2s08dkby8wjk00mm9xit 
+       foreign key (userid) 
+       references Users
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (userid, followerid) 
+    values
+        (?, ?)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        userid=?
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (userid, followerid) 
+    values
+        (?, ?)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (userid, followerid) 
+    values
+        (?, ?)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:46:43 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (userid, followerid) 
+    values
+        (?, ?)
+2020-09-10 18:46:44 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (userid, followerid) 
+    values
+        (?, ?)
+2020-09-10 18:46:44 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 18:46:44 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (userid, followerid) 
+    values
+        (?, ?)
+2020-09-10 18:46:44 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_2_,
+        users0_.dateOfBirth as dateofbi2_2_,
+        users0_.description as descript3_2_,
+        users0_.firstName as firstnam4_2_,
+        users0_.gender as gender5_2_,
+        users0_.lastName as lastname6_2_,
+        users0_.password as password7_2_,
+        users0_.picture as picture8_2_,
+        users0_.username as username9_2_ 
+    from
+        Users users0_
+2020-09-10 20:53:54 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 20:53:54 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 20:53:54 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 20:53:54 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 20:53:54 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:53:55 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:53:56 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:56:50 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:56:51 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:57:36 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 20:57:37 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_ 
+    where
+        followerid=?
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:58:07 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:58:08 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:58:08 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:58:08 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 20:58:08 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 20:58:08 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 21:29:48 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 21:29:48 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 21:29:48 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 21:29:48 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 21:29:48 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:29:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:29:50 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:29:50 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 21:31:48 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:31:49 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:31:50 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:31:50 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:31:50 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:31:50 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:34:00 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 21:34:01 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_ 
+    where
+        followerid=?
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 22:28:03 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:28:04 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 22:30:21 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:30:22 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 22:31:12 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 22:31:12 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 22:31:12 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 22:31:12 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 22:31:12 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:31:13 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:31:14 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 22:31:14 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_ cross 
+    join
+        Follower followers1_, Users users2_ 
+    where
+        users0_.userid=followers1_.followeeid 
+        and followers1_.followerid=users2_.userid 
+        and {non-qualified-property-ref}=?
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:33:01 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 22:33:02 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:33:02 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:33:02 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:33:02 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:33:02 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:33:02 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:33:02 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 22:34:29 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 22:34:29 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 22:34:29 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 22:34:29 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:34:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:34:31 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 22:35:11 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 22:35:12 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 22:35:13 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 22:35:13 [main] DEBUG org.hibernate.SQL - 
+    select
+        users2_.userid as userid1_1_,
+        users2_.dateOfBirth as dateofbi2_1_,
+        users2_.description as descript3_1_,
+        users2_.firstName as firstnam4_1_,
+        users2_.gender as gender5_1_,
+        users2_.lastName as lastname6_1_,
+        users2_.password as password7_1_,
+        users2_.picture as picture8_1_,
+        users2_.username as username9_1_ 
+    from
+        Users users0_ 
+    inner join
+        Follower followers1_ 
+            on users0_.userid=followers1_.followeeid 
+    inner join
+        Users users2_ 
+            on followers1_.followerid=users2_.userid
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:12:29 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 23:12:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:12:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:12:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:12:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:12:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:12:30 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:12:30 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 23:13:00 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 23:13:00 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    update
+        Users 
+    set
+        dateOfBirth=?,
+        description=?,
+        firstName=?,
+        gender=?,
+        lastName=?,
+        password=?,
+        picture=?,
+        username=? 
+    where
+        userid=?
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:13:01 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:13:02 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 23:13:02 [main] DEBUG org.hibernate.SQL - 
+    select
+        users2_.userid as userid1_1_,
+        users2_.dateOfBirth as dateofbi2_1_,
+        users2_.description as descript3_1_,
+        users2_.firstName as firstnam4_1_,
+        users2_.gender as gender5_1_,
+        users2_.lastName as lastname6_1_,
+        users2_.password as password7_1_,
+        users2_.picture as picture8_1_,
+        users2_.username as username9_1_ 
+    from
+        Users users0_ 
+    inner join
+        Follower followers1_ 
+            on users0_.userid=followers1_.followeeid 
+    inner join
+        Users users2_ 
+            on followers1_.followerid=users2_.userid 
+    where
+        users0_.userid=?
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 23:14:34 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        Follower 
+    where
+        followeeid=?
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:14:35 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 23:14:36 [main] DEBUG org.hibernate.SQL - 
+    select
+        users2_.userid as userid1_1_,
+        users2_.dateOfBirth as dateofbi2_1_,
+        users2_.description as descript3_1_,
+        users2_.firstName as firstnam4_1_,
+        users2_.gender as gender5_1_,
+        users2_.lastName as lastname6_1_,
+        users2_.password as password7_1_,
+        users2_.picture as picture8_1_,
+        users2_.username as username9_1_ 
+    from
+        Users users0_ 
+    inner join
+        Follower followers1_ 
+            on users0_.userid=followers1_.followeeid 
+    inner join
+        Users users2_ 
+            on followers1_.followerid=users2_.userid 
+    where
+        users0_.userid=?
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKf4l5430jy7d5ikm1ltx9tg810
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       drop constraint FKqc1grefokydr3ahgaqvwp9n1j
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Follower cascade
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKf4l5430jy7d5ikm1ltx9tg810 
+       foreign key (followerid) 
+       references Users
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Follower 
+       add constraint FKqc1grefokydr3ahgaqvwp9n1j 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:16:56 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        Follower 
+    where
+        followeeid=?
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 23:16:57 [main] DEBUG org.hibernate.SQL - 
+    select
+        users2_.userid as userid1_1_,
+        users2_.dateOfBirth as dateofbi2_1_,
+        users2_.description as descript3_1_,
+        users2_.firstName as firstnam4_1_,
+        users2_.gender as gender5_1_,
+        users2_.lastName as lastname6_1_,
+        users2_.password as password7_1_,
+        users2_.picture as picture8_1_,
+        users2_.username as username9_1_ 
+    from
+        Users users0_ 
+    inner join
+        Follower followers1_ 
+            on users0_.userid=followers1_.followeeid 
+    inner join
+        Users users2_ 
+            on followers1_.followerid=users2_.userid 
+    where
+        users0_.userid=?
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 23:24:22 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:24:23 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:24:24 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 23:24:24 [main] DEBUG org.hibernate.SQL - 
+    select
+        users2_.userid as userid1_1_,
+        users2_.dateOfBirth as dateofbi2_1_,
+        users2_.description as descript3_1_,
+        users2_.firstName as firstnam4_1_,
+        users2_.gender as gender5_1_,
+        users2_.lastName as lastname6_1_,
+        users2_.password as password7_1_,
+        users2_.picture as picture8_1_,
+        users2_.username as username9_1_ 
+    from
+        Users users0_ 
+    inner join
+        user_follower followers1_ 
+            on users0_.userid=followers1_.followeeid 
+    inner join
+        Users users2_ 
+            on followers1_.followerid=users2_.userid 
+    where
+        users0_.userid=?
+2020-09-10 23:29:44 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK9u20i8u6s7fbw6otq74px1nn7
+2020-09-10 23:29:44 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       drop constraint FK8dltnkbkdrjrrd6ui9cf4txx9
+2020-09-10 23:29:44 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists user_follower cascade
+2020-09-10 23:29:44 [main] DEBUG org.hibernate.SQL - 
+    
+    drop table if exists Users cascade
+2020-09-10 23:29:44 [main] DEBUG org.hibernate.SQL - 
+    
+    create table user_follower (
+       followeeid int4 not null,
+        followerid int4 not null
+    )
+2020-09-10 23:29:44 [main] DEBUG org.hibernate.SQL - 
+    
+    create table Users (
+       userid  serial not null,
+        dateOfBirth timestamp not null,
+        description varchar(250),
+        firstName varchar(255) not null,
+        gender int4 not null,
+        lastName varchar(255) not null,
+        password int4 not null,
+        picture bytea,
+        username varchar(255) not null,
+        primary key (userid)
+    )
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table Users 
+       add constraint UK_23y4gd49ajvbqgl3psjsvhff6 unique (username)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK9u20i8u6s7fbw6otq74px1nn7 
+       foreign key (followerid) 
+       references Users
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    
+    alter table user_follower 
+       add constraint FK8dltnkbkdrjrrd6ui9cf4txx9 
+       foreign key (followeeid) 
+       references Users
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    delete 
+    from
+        user_follower 
+    where
+        followeeid=?
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:29:45 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:29:46 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:29:46 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        Users
+        (dateOfBirth, description, firstName, gender, lastName, password, picture, username) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?)
+2020-09-10 23:29:46 [main] DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        user_follower
+        (followeeid, followerid) 
+    values
+        (?, ?)
+2020-09-10 23:29:46 [main] DEBUG org.hibernate.SQL - 
+    select
+        users0_.userid as userid1_1_,
+        users0_.dateOfBirth as dateofbi2_1_,
+        users0_.description as descript3_1_,
+        users0_.firstName as firstnam4_1_,
+        users0_.gender as gender5_1_,
+        users0_.lastName as lastname6_1_,
+        users0_.password as password7_1_,
+        users0_.picture as picture8_1_,
+        users0_.username as username9_1_ 
+    from
+        Users users0_
+2020-09-10 23:29:46 [main] DEBUG org.hibernate.SQL - 
+    select
+        users2_.userid as userid1_1_,
+        users2_.dateOfBirth as dateofbi2_1_,
+        users2_.description as descript3_1_,
+        users2_.firstName as firstnam4_1_,
+        users2_.gender as gender5_1_,
+        users2_.lastName as lastname6_1_,
+        users2_.password as password7_1_,
+        users2_.picture as picture8_1_,
+        users2_.username as username9_1_ 
+    from
+        Users users0_ 
+    inner join
+        user_follower followers1_ 
+            on users0_.userid=followers1_.followeeid 
+    inner join
+        Users users2_ 
+            on followers1_.followerid=users2_.userid 
+    where
+        users0_.userid=?
+2020-09-10 23:29:46 [main] DEBUG org.hibernate.SQL - 
+    select
+        users2_.userid as userid1_1_,
+        users2_.dateOfBirth as dateofbi2_1_,
+        users2_.description as descript3_1_,
+        users2_.firstName as firstnam4_1_,
+        users2_.gender as gender5_1_,
+        users2_.lastName as lastname6_1_,
+        users2_.password as password7_1_,
+        users2_.picture as picture8_1_,
+        users2_.username as username9_1_ 
+    from
+        Users users0_ 
+    inner join
+        user_follower followees1_ 
+            on users0_.userid=followees1_.followerid 
+    inner join
+        Users users2_ 
+            on followees1_.followeeid=users2_.userid 
+    where
+        users0_.userid=?
