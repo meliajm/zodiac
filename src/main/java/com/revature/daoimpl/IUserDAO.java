@@ -10,9 +10,9 @@ public interface IUserDAO {
 	
 	public boolean update(Users u);
 	
-	public boolean addFollowers(int id, int id2);
+	public boolean addFollowers(Users u, Users u2);
 	
-	public boolean removeFollowers(int id, int id2);
+	public boolean removeFollowers(Users u, Users u2);
 	
 	public Users findById(int id);
 	

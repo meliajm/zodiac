@@ -21,34 +21,47 @@ public class ServiceTest {
 	@Before
 	public void before() {System.out.println("\n Test:");}
 	
+	@Test
+	public void insert() {
+//		Users u = new Users("JohnDoe", 1216985755, "John", "Doe", new Date(), "", 1, null);
+//		Users u2 = new Users("JohnnyDoe", 1216985755, "Johnny", "Doe", new Date(), "", 1, null);
+//		boolean insert = uDao.insert(u);
+//		boolean insert2 = uDao.insert(u2);
+//		assertFalse(insert);
+//		assertTrue(insert2);
+	}
 	
 	@Test
 	public void update() {
 		System.out.println("UPDATE:");
-//		Users u = new Users(5, "DanielSmith", 1216985755, "Daniel", "Smith", new Date(), "", 1, null);
-//		
-//		boolean update = uDao.update(u);
-//		assertTrue(update);
+		Users u = new Users(5, "DanielWilliam", 1216985755, "Daniel", "Williams", new Date(), "", 1, null);
+		
+		boolean update = uDao.update(u);
+		assertTrue(update);
 	}
 	
 	@Test
 	public void add() {
 		System.out.println("ADD:");
-		boolean add = uDao.addFollowers(1, 2);
-		boolean add2 = uDao.addFollowers(1, 1);
-		List<Users> user1 = uDao.findFollowers(1);
-		for(Users u: user1) {System.out.println("Add: "+u);}
+		Users u = uDao.findById(2);
+		Users u2 = uDao.findById(3);
+		
+		boolean add = uDao.addFollowers(u, u2);
 		assertTrue(add);
-		assertFalse(add);
+		boolean add2 = uDao.addFollowers(u, u);
+		assertFalse(add2);
 	}
 	
 	@Test
 	public void remove() {
 		System.out.println("REMOVE:");
-		boolean remove = uDao.removeFollowers(1, 2);
-		boolean remove2 = uDao.removeFollowers(1, 1);
+		Users u = uDao.findById(3);
+		Users u2 = uDao.findById(4);
+		
+		boolean remove = uDao.removeFollowers(u, u2);
 		assertTrue(remove);
-		assertFalse(remove2);
+		boolean remove2 = uDao.removeFollowers(u2, u2);
+		assertTrue(remove2);
 	}
 	
 	@Test

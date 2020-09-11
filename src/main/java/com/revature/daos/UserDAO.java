@@ -35,16 +35,31 @@ public class UserDAO implements IUserDAO{
 	@Override
 	public boolean update(Users u) {
 		Session ses = HibernateUtil.getSession();
-		Transaction tx = null;
-
-		try {
-			tx = ses.beginTransaction();
 			
 			ses.update(u);
 
-			tx.commit();
-			
 			return true;
+
+	}
+	
+	@Override
+	public boolean addFollowers(Users u, Users u2) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = null;
+
+		try {
+			tx = ses.beginTransaction();
+			
+			if(u == u2) {
+				tx.rollback();
+				return false;
+			} else {
+				u.getFollowers().add(u2);
+	
+				ses.merge(u);
+				tx.commit();
+				return true;
+			}
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
 			e.printStackTrace();
@@ -53,48 +68,24 @@ public class UserDAO implements IUserDAO{
 	}
 	
 	@Override
-	public boolean addFollowers(int id, int id2) {
+	public boolean removeFollowers(Users u, Users u2) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = null;
 
 		try {
 			tx = ses.beginTransaction();
 			
-			Users u = ses.get(Users.class, id);
-			
-			Users u2 = ses.get(Users.class, id2);
-
-			u.getFollowers().add(u2);
-
-			ses.merge(u);
-			
-			return true;
-		} catch (Exception e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace();
-			return false;
-		}
-	}
+			if(u == u2) {
+				tx.rollback(); 
+				return false;
+			} else {
+				u.getFollowers().remove(u2);
 	
-	@Override
-	public boolean removeFollowers(int id, int id2) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = null;
-
-		try {
-			tx = ses.beginTransaction();
-			
-			Users u = ses.get(Users.class, id);
-			
-			Users u2 = ses.get(Users.class, id2);
-			
-			u.getFollowers().remove(u2);
-			
-			ses.merge(u);
-			
-			tx.commit();
-			
-			return true;
+				ses.merge(u);
+				tx.commit();
+				
+				return true;
+			}
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
 			e.printStackTrace();
@@ -121,13 +112,13 @@ public class UserDAO implements IUserDAO{
 	@Override
 	public Users findById(int id) {
 		Session ses = HibernateUtil.getSession();
-			Users u = ses.get(Users.class, id);
-			
-			if(u != null) {
-				return u;
-			}else {
-				return null;
-			}
+		Users u = ses.get(Users.class, id);
+		
+		if(u != null) {
+			return u;
+		}else {
+			return null;
+		}
 	}
 
 	//FIND WHO YOU'RE FOLLOWING
