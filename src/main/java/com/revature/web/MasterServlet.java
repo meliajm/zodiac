@@ -26,7 +26,7 @@ public class MasterServlet extends HttpServlet{
 	res.setContentType("application/json");
 	res.setStatus(404);
 
-	final String URI = req.getRequestURI().replace("/project2/", "");
+	final String URI = req.getRequestURI().replace("/zodiac/", "");
 
 	String[] portions = URI.split("/");
 
@@ -37,7 +37,7 @@ public class MasterServlet extends HttpServlet{
 	try {
 		switch (portions[0]) {
 			case "user":
-				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("loggedin")) {
+//				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("loggedin")) {
 					if (req.getMethod().equals("GET")) {
 						if (portions.length == 1) {		
 							uc.getAll(res);
@@ -48,13 +48,13 @@ public class MasterServlet extends HttpServlet{
 					} else if (req.getMethod().equals("POST")) {
 							uc.addUser(req, res);
 					}
-				} else {
-					res.setStatus(403);
-					res.getWriter().println("You must be logged in to do that!");
-				}
+//				} else {
+//					res.setStatus(403);
+//					res.getWriter().println("You must be logged in to do that!");
+//				}
 				break;
 			case "follower":
-				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("loggedin")) {
+//				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("loggedin")) {
 					if (req.getMethod().equals("GET")) {
 						if (portions.length == 2) {	
 							int id = Integer.parseInt(portions[1]);
@@ -63,23 +63,23 @@ public class MasterServlet extends HttpServlet{
 					} else if (req.getMethod().equals("POST")) {
 							uc.addFollower(req, res);
 					}
-				} else {
-					res.setStatus(403);
-					res.getWriter().println("You must be logged in to do that!");
-				}
+//				} else {
+//					res.setStatus(403);
+//					res.getWriter().println("You must be logged in to do that!");
+//				}
 				break;
 			case "followee":
-				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("loggedin")) {
+//				if (req.getSession(false) != null && (boolean) req.getSession().getAttribute("loggedin")) {
 					if (req.getMethod().equals("GET")) {
 						if (portions.length == 2) {	
 							int id = Integer.parseInt(portions[1]);
 							uc.getFollowees(res, id);
 						}
 					}
-				} else {
-					res.setStatus(403);
-					res.getWriter().println("You must be logged in to do that!");
-				}
+//				} else {
+//					res.setStatus(403);
+//					res.getWriter().println("You must be logged in to do that!");
+//				}
 				break;
 			case "login":
 				lc.login(req, res);
