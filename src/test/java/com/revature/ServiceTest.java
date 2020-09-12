@@ -52,7 +52,7 @@ public class ServiceTest {
 		Users u2 = uDao.findById(2);
 		Users u3 = uDao.findById(3);
 		Users u4 = uDao.findById(4);
-		Users u5 = uDao.findById(5);
+		Users u5 = uDao.findById(10);
 		
 		uDao.addFollowers(u, u3);
 		uDao.addFollowers(u, u4);
@@ -63,6 +63,8 @@ public class ServiceTest {
 		assertTrue(add);
 		boolean add2 = uDao.addFollowers(u, u);
 		assertFalse(add2);
+		boolean add3 = uDao.addFollowers(u5, u);
+		assertFalse(add3);
 	}
 	
 	@Test
@@ -70,11 +72,14 @@ public class ServiceTest {
 		System.out.println("REMOVE:");
 		Users u = uDao.findById(1);
 		Users u2 = uDao.findById(2);
+		Users u3 = uDao.findById(10);
 		
 		boolean remove = uDao.removeFollowers(u, u2);
 		assertTrue(remove);
 		boolean remove2 = uDao.removeFollowers(u2, u2);
 		assertFalse(remove2);
+		boolean add3 = uDao.removeFollowers(u3, u);
+		assertFalse(add3);
 	}
 	
 	@Test

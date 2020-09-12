@@ -72,7 +72,7 @@ public class UserDAO implements IUserDAO{
 			}
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
-			e.printStackTrace();
+			System.out.println(e);
 			return false;
 		}
 	}
@@ -98,7 +98,7 @@ public class UserDAO implements IUserDAO{
 			}
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
-			e.printStackTrace();
+			System.out.println(e);
 			return false;
 		}
 	}
@@ -164,5 +164,16 @@ public class UserDAO implements IUserDAO{
 		} 
 
 		return all;
+	}
+	
+	@Override
+	public Users findByUsername(String username) {
+		Session ses = HibernateUtil.getSession();
+		String hql = "FROM User u WHERE u.username = :u";
+		
+		Query<Users> query = ses.createQuery(hql, Users.class).setParameter("u", username);
+		Users u = query.list().get(0);
+		
+		return u;
 	}
 }

@@ -16,6 +16,8 @@ public interface IUserDAO {
 	
 	public Users findById(int id);
 	
+	public Users findByUsername(String username);
+	
 	public List<Users> findFollowers(int id);
 	
 	public List<Users> findFollowees(int id);
