@@ -24,7 +24,7 @@ public class MasterServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 	res.setContentType("application/json");
-	res.setStatus(404);
+	res.setStatus(403);
 
 	final String URI = req.getRequestURI().replace("/Zodiac/", "");
 
