@@ -4,82 +4,176 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
-import com.revature.models.User;
+import com.revature.daoimpl.IUserDAO;
+import com.revature.models.Users;
 import com.revature.util.HibernateUtil;
 
-public class UserDAO implements IUserDAO {
-
-	public UserDAO() {
-		super();
-	}
+public class UserDAO implements IUserDAO{
 
 	@Override
-	public boolean insert(User u) {
+	public boolean insert(Users u) {
 		Session ses = HibernateUtil.getSession();
+		Transaction tx = null;
 
-			Transaction tx = ses.beginTransaction();
+		try {
+			tx = ses.beginTransaction();
 			
 			ses.save(u);
-			tx.commit();
-			return true;
-
-	}
-
-	@Override
-	public boolean update(User u) {
-		Session ses = HibernateUtil.getSession();
-		try {
-			Transaction tx = ses.beginTransaction();
 			
-			ses.merge(u);
 			tx.commit();
+			
 			return true;
-		}catch(Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			if (tx!=null) tx.rollback();
+			System.out.println(e);
 			return false;
 		}
 	}
 
 	@Override
-	public boolean delete(int id) {
+	public boolean update(Users u) {
 		Session ses = HibernateUtil.getSession();
-		return false;
+		Transaction tx = null;
+
+		try {
+			tx = ses.beginTransaction();
+			
+			ses.merge(u);
+
+			tx.commit();
+			return true;
+		} catch (Exception e) {
+			if (tx!=null) tx.rollback();
+			System.out.println(e);
+			return false;
+		}
+
+	}
+	
+	@Override
+	public boolean addFollowers(Users u, Users u2) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = null;
+
+		try {
+			tx = ses.beginTransaction();
+			
+			if(u == u2) {
+				tx.rollback();
+				return false;
+			} else {
+				u.getFollowers().add(u2);
+	
+				ses.merge(u);
+				tx.commit();
+				return true;
+			}
+		} catch (Exception e) {
+			if (tx!=null) tx.rollback();
+			System.out.println(e);
+			return false;
+		}
+	}
+	
+	@Override
+	public boolean removeFollowers(Users u, Users u2) {
+		Session ses = HibernateUtil.getSession();
+		Transaction tx = null;
+
+		try {
+			tx = ses.beginTransaction();
+			
+			if(u == u2) {
+				tx.rollback(); 
+				return false;
+			} else {
+				u.getFollowers().remove(u2);
+	
+				ses.merge(u);
+				tx.commit();
+				
+				return true;
+			}
+		} catch (Exception e) {
+			if (tx!=null) tx.rollback();
+			System.out.println(e);
+			return false;
+		}
+	}
+	
+	@Override
+	public List<Users> findAll() {
+		Session ses = HibernateUtil.getSession();
+		String hql = "FROM Users";
+		
+		@SuppressWarnings("unchecked")
+		Query<Users> query = ses.createQuery(hql);
+		List<Users> all = query.list();
+		
+		if(all.isEmpty()) {
+			return null;
+		}else {
+			return all;
+		}
 	}
 
 	@Override
-	public List<User> findAll() {
+	public Users findById(int id) {
 		Session ses = HibernateUtil.getSession();
-		List<User> all = ses.createQuery("FROM User", User.class).list();
+		Users u = ses.get(Users.class, id);
+		
+		if(u != null) {
+			return u;
+		}else {
+			return null;
+		}
+	}
+
+	//FIND WHO YOU'RE FOLLOWING
+	@Override
+	public List<Users> findFollowers(int id){
+		Session ses = HibernateUtil.getSession();
+
+		String hql = "SELECT follow FROM Users u JOIN u.followers follow WHERE u.id = :u";
+		
+		@SuppressWarnings("unchecked")
+		Query<Users> query = ses.createQuery(hql).setParameter("u", id);
+		List<Users> all = query.list();
+
+		if(all.isEmpty()) {
+			return null;
+		} 
 		return all;
 	}
-
+	
+	//FIND WHOSE FOLLOWS YOU
 	@Override
-	public User findById(int id) {
+	public List<Users> findFollowees(int id){
 		Session ses = HibernateUtil.getSession();
-		User u = ses.get(User.class, id);
+		
+		String hql = "SELECT follow FROM Users u JOIN u.followees follow WHERE u.id = :u";
+		
+		@SuppressWarnings("unchecked")
+		Query<Users> query = ses.createQuery(hql).setParameter("u", id);
+		List<Users> all = query.list();
+
+		if(all.isEmpty()) {
+			return null;
+		} 
+
+		return all;
+	}
+	
+	@Override
+	public Users findByUsername(String username) {
+		Session ses = HibernateUtil.getSession();
+		String hql = "FROM User u WHERE u.username = :u";
+		
+		Query<Users> query = ses.createQuery(hql, Users.class).setParameter("u", username);
+		Users u = query.list().get(0);
+		
 		return u;
 	}
-
-	@Override
-	public User findByUsername(String username) {
-		Session ses = HibernateUtil.getSession();
-		List<User> u = (List<User>)ses.createQuery("FROM User u WHERE u.username = '" + username + "' ", User.class).list();
-		return (User) u;
-	}
-
-	@Override
-	public List<User> findFollowers(User u) {
-		Session ses = HibernateUtil.getSession();
-		List<User> all = (List<User>)ses.createNativeQuery("SELECT * FROM users u JOIN user_follower f ON u.userid = " + u.getUserid(), User.class).list();
-		return all;
-	}
-
-	@Override
-	public List<User> findFollowees(User u) {
-		Session ses = HibernateUtil.getSession();
-		List<User> all = (List<User>)ses.createNativeQuery("SELECT * FROM users u JOIN user_follower f ON f.followerid=" + u.getUserid(), User.class).list();
-		return all;
-	}
-
 }
