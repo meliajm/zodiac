@@ -26,7 +26,7 @@ public class MasterServlet extends HttpServlet{
 	res.setContentType("application/json");
 	res.setStatus(404);
 
-	final String URI = req.getRequestURI().replace("/zodiac/", "");
+	final String URI = req.getRequestURI().replace("/Zodiac/", "");
 
 	String[] portions = URI.split("/");
 
