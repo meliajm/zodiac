@@ -5,12 +5,12 @@ import java.util.List;
 import com.revature.models.Users;
 
 public interface IUserDAO {
+
+	public Users insert(Users u);
 	
-	public boolean insert(Users u);
+	public Users update(Users u);
 	
-	public boolean update(Users u);
-	
-	public boolean addFollowers(Users u, Users u2);
+	public Users addFollowers(int id, Users u);
 	
 	public boolean removeFollowers(Users u, Users u2);
 	

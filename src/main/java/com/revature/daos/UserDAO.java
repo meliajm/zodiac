@@ -5,15 +5,17 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 import com.revature.daoimpl.IUserDAO;
 import com.revature.models.Users;
 import com.revature.util.HibernateUtil;
 
+@Repository("userDAO")
 public class UserDAO implements IUserDAO{
 
 	@Override
-	public boolean insert(Users u) {
+	public Users insert(Users u) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = null;
 
@@ -24,16 +26,16 @@ public class UserDAO implements IUserDAO{
 			
 			tx.commit();
 			
-			return true;
+			return u;
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
 			System.out.println(e);
-			return false;
+			return null;
 		}
 	}
 
 	@Override
-	public boolean update(Users u) {
+	public Users update(Users u) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = null;
 
@@ -43,37 +45,38 @@ public class UserDAO implements IUserDAO{
 			ses.merge(u);
 
 			tx.commit();
-			return true;
+			return u;
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
 			System.out.println(e);
-			return false;
+			return null;
 		}
 
 	}
 	
 	@Override
-	public boolean addFollowers(Users u, Users u2) {
+	public Users addFollowers(int id, Users u) {
 		Session ses = HibernateUtil.getSession();
 		Transaction tx = null;
 
 		try {
 			tx = ses.beginTransaction();
 			
-			if(u == u2) {
+			Users user = findById(id);
+			if(user == u) {
 				tx.rollback();
-				return false;
+				return null;
 			} else {
-				u.getFollowers().add(u2);
+				user.getFollowers().add(u);
 	
-				ses.merge(u);
+				ses.merge(user);
 				tx.commit();
-				return true;
+				return user;
 			}
 		} catch (Exception e) {
 			if (tx!=null) tx.rollback();
 			System.out.println(e);
-			return false;
+			return null;
 		}
 	}
 	

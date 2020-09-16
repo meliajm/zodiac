@@ -2,24 +2,29 @@ package com.revature.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.revature.daoimpl.IUserDAO;
 import com.revature.daos.UserDAO;
 import com.revature.models.Users;
 
+@Service("userService")
 public class UserService {
 	
+	@Autowired
 	public static IUserDAO uDao = new UserDAO();
 
-	public boolean insert(Users u) {
+	public Users insert(Users u) {
 		return uDao.insert(u);
 	}
 	
-	public boolean update(Users u) {
+	public Users update(Users u) {
 		return uDao.update(u);
 	}
 	
-	public boolean addFollowers(Users u, Users u2) {
-		return uDao.addFollowers(u, u2);
+	public Users addFollowers(int id, Users u) {
+		return uDao.addFollowers(id, u);
 	}
 	
 	public boolean removeFollowers(Users u, Users u2) {
