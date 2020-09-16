@@ -76,14 +76,14 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(u);
 	}
 	
-	@PutMapping("/followers/{id}")
+	@PutMapping("/followers/add/{id}")
 	public ResponseEntity<Users> addFollower(@PathVariable("id") int id, @RequestBody Users u){
 		Users user = us.addFollowers(id, u);
 		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}
 	
-	@PutMapping("/followees/{id}")
+	@PutMapping("/followers/remove/{id}")
 	public ResponseEntity<Users> removeFollower(@PathVariable("id") int id, @RequestBody Users u){
 		Users user = us.removeFollowers(id, u);
 		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
