@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,16 +17,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.models.Users;
-import com.revature.services.UserService;
+import com.revature.daoimpl.IUserDAO;
 
-@Controller("userController")
+@Controller
 @RequestMapping(value="/user")
 @ResponseBody
+@CrossOrigin(origins="*", allowedHeaders="*")
 public class UserController {
-	private UserService us;
+	
+	private IUserDAO us;
 	
 	@Autowired
-	public UserController(UserService us) {
+	public UserController(IUserDAO us) {
 		this.us = us; 
 	}
 	
@@ -80,9 +83,13 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}
 	
-//	@PutMapping
-//	public void removeFollower(){}
-//
+	@PutMapping("/followees/{id}")
+	public ResponseEntity<Users> removeFollower(@PathVariable("id") int id, @RequestBody Users u){
+		Users user = us.removeFollowers(id, u);
+		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
+	}
+
 //	@PostMapping
 //	public void login() {}
 //	

@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,10 +39,10 @@ public class Users implements Serializable{
 	@Column(nullable=false)
 	private int gender;
 	private byte[] picture;
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="user_follower",
-	 joinColumns=@JoinColumn(name="followeeid"),
-	 inverseJoinColumns=@JoinColumn(name="followerid"))
+	 joinColumns=@JoinColumn(name="followeeid", referencedColumnName="userid"),
+	 inverseJoinColumns=@JoinColumn(name="followerid", referencedColumnName="userid"))
 	private Set<Users> followers = new HashSet<Users>();
 	
 	@ManyToMany(mappedBy = "followers")
@@ -82,7 +83,7 @@ public class Users implements Serializable{
 	public String toString() {
 		return "Users [userid=" + userid + ", username=" + username + ", password=" + password + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", description=" + description
-				+ ", gender=" + gender + ", picture=" + Arrays.toString(picture) + ", followers=" + followers + "]";
+				+ ", gender=" + gender + ", picture=" + Arrays.toString(picture) + ", followers=" + followers.size() + "]";
 	}
 
 	public int getUserid() {

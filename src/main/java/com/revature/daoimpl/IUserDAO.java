@@ -12,7 +12,7 @@ public interface IUserDAO {
 	
 	public Users addFollowers(int id, Users u);
 	
-	public boolean removeFollowers(Users u, Users u2);
+	public Users removeFollowers(int id, Users u);
 	
 	public Users findById(int id);
 	
