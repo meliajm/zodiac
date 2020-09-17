@@ -35,16 +35,14 @@ public class ServiceTest {
 	@Test
 	public void add() {
 		System.out.println("ADD:");
-		Users u = dao.findById(1);
-		Users add = dao.addFollowers(2, u);
+		Users add = dao.addFollowers(2, 1);
 		assertNotNull(add);
 	}
 	
 	@Test
 	public void remove() {
 		System.out.println("REMOVE:");
-		Users u = dao.findById(1);
-		Users remove = dao.removeFollowers(2, u);
+		Users remove = dao.removeFollowers(2, 1);
 		assertNotNull(remove);
 	}
 	

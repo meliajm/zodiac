@@ -51,23 +51,27 @@ public class UserDAO implements IUserDAO{
 	}
 	
 	@Override
-	public Users addFollowers(int id, Users u) {
+	public Users addFollowers(int id, int id2) {
 		Session ses = sf.getCurrentSession();
-		Users user = findById(id);
 		
-		user.getFollowers().add(u);
+		Users user = findById(id);
+		Users user2 = findById(id2);
+		
+		user.getFollowers().add(user2);
 		ses.merge(user);
 		
 		return user;
 	}
 	
 	@Override
-	public Users removeFollowers(int id, Users u) {
+	public Users removeFollowers(int id, int id2) {
 		Session ses = sf.getCurrentSession();
-		Users user = findById(id);	
 		
-		user.getFollowers().remove(u);
-		ses.merge(u);
+		Users user = findById(id);	
+		Users user2 = findById(id2);
+ 		
+		user.getFollowers().remove(user2);
+		ses.merge(user);
 		
 		return user;
 	}

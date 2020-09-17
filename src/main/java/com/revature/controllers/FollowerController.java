@@ -39,15 +39,15 @@ public class FollowerController {
 	}
 			
 	@PutMapping("/add/{id}")
-	public ResponseEntity<Users> addFollower(@PathVariable("id") int id, @RequestBody Users u){
-		Users user = us.addFollowers(id, u);
+	public ResponseEntity<Users> addFollower(@PathVariable("id") int id, @RequestBody int id2){
+		Users user = us.addFollowers(id, id2);
 		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}
 	
 	@PutMapping("/remove/{id}")
-	public ResponseEntity<Users> removeFollower(@PathVariable("id") int id, @RequestBody Users u){
-		Users user = us.removeFollowers(id, u);
+	public ResponseEntity<Users> removeFollower(@PathVariable("id") int id, @RequestBody int id2){
+		Users user = us.removeFollowers(id, id2);
 		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}

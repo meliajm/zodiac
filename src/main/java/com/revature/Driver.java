@@ -12,9 +12,9 @@ import com.revature.models.Users;
 public class Driver {
 
 	public static void main(String[] args) {
-//		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
-//		
-//		IUserDAO dao = ac.getBean(IUserDAO.class);
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		
+		IUserDAO dao = ac.getBean(IUserDAO.class);
 		
 //		System.out.println("\n Find All");
 //		List<Users> users = dao.findAll();
