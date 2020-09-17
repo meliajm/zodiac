@@ -37,30 +37,6 @@ public class UserController {
 		return us.findAll();
 	}
 	
-	@GetMapping("/{id}")
-	public ResponseEntity<Users> getUser(@PathVariable("id") int id){
-		Users u = us.findById(id);
-		
-		if(u==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(u);	
-	}
-	
-	@GetMapping("/followers/{id}")
-	public ResponseEntity<List<Users>> getFollowers(@PathVariable("id") int id){
-		List<Users> users = us.findFollowers(id);
-		
-		if(users==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(users);
-	}
-		
-	@GetMapping("/followees/{id}")
-	public ResponseEntity<List<Users>> getFollowees(@PathVariable("id") int id){
-		List<Users> users = us.findFollowees(id);
-		
-		if(users==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(users);
-	}
-	
 	@PostMapping
 	public ResponseEntity<Users> addUser(@RequestBody Users u){
 		u = us.insert(u);
@@ -76,23 +52,12 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(u);
 	}
 	
-	@PutMapping("/followers/add/{id}")
-	public ResponseEntity<Users> addFollower(@PathVariable("id") int id, @RequestBody Users u){
-		Users user = us.addFollowers(id, u);
-		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
-	}
-	
-	@PutMapping("/followers/remove/{id}")
-	public ResponseEntity<Users> removeFollower(@PathVariable("id") int id, @RequestBody Users u){
-		Users user = us.removeFollowers(id, u);
-		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
+	@GetMapping("/{id}")
+	public ResponseEntity<Users> getUser(@PathVariable("id") int id){
+		Users u = us.findById(id);
+		
+		if(u==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(u);	
 	}
 
-//	@PostMapping
-//	public void login() {}
-//	
-//	@GetMapping
-//	public void logout() {}
 }

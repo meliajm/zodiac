@@ -27,6 +27,12 @@ public class UserDAO implements IUserDAO{
 	@Override
 	public Users insert(Users u) {
 		Session ses = sf.getCurrentSession();
+		StringBuilder sb = new StringBuilder();
+		int pass = u.getPassword().hashCode();
+		sb.append(pass);
+		
+		String hashpass = sb.toString();
+		u.setPassword(hashpass);
 		ses.save(u);
 		return u;
 	}
@@ -34,6 +40,12 @@ public class UserDAO implements IUserDAO{
 	@Override
 	public Users update(Users u) {
 		Session ses = sf.getCurrentSession();
+		StringBuilder sb = new StringBuilder();
+		int pass = u.getPassword().hashCode();
+		sb.append(pass);
+		
+		String hashpass = sb.toString();
+		u.setPassword(hashpass);
 		ses.merge(u);
 		return u;
 	}
@@ -105,13 +117,19 @@ public class UserDAO implements IUserDAO{
 	}
 	
 	@Override
-	public Users findByUsername(String username) {
+	public Users findByLogin(String username, String password) {
 		Session ses = sf.getCurrentSession();
-		String hql = "FROM User u WHERE u.username = :u";
+		String hql = "FROM Users u WHERE u.username = :u AND u.password = :p";
+		StringBuilder sb = new StringBuilder();
+		int pass = password.hashCode();
+		sb.append(pass);
 		
-		Query<Users> query = ses.createQuery(hql, Users.class).setParameter("u", username);
+		String hashpass = sb.toString();
+
+		Query<Users> query = ses.createQuery(hql, Users.class).setParameter("u", username).setParameter("p", hashpass);
 		Users u = query.list().get(0);
 		
 		return u;
 	}
+	
 }

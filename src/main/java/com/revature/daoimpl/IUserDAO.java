@@ -16,7 +16,7 @@ public interface IUserDAO {
 	
 	public Users findById(int id);
 	
-	public Users findByUsername(String username);
+	public Users findByLogin(String username, String password);
 	
 	public List<Users> findFollowers(int id);
 	

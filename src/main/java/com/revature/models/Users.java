@@ -27,7 +27,7 @@ public class Users implements Serializable{
 	@Column(nullable=false, unique=true)
 	private String username;
 	@Column(nullable=false)
-	private int password;
+	private String password;
 	@Column(nullable=false)
 	private String firstName;
 	@Column(nullable=false)
@@ -51,7 +51,7 @@ public class Users implements Serializable{
 	public Users() {}
 
 	//Insert - Register User
-	public Users(String username, int password, String firstName, String lastName, Date dateOfBirth, String description,
+	public Users(String username, String password, String firstName, String lastName, Date dateOfBirth, String description,
 			int gender, byte[] picture) {
 		super();
 		this.username = username;
@@ -65,7 +65,7 @@ public class Users implements Serializable{
 	}
 
 	//Update User
-	public Users(int userid, String username, int password, String firstName, String lastName, Date dateOfBirth,
+	public Users(int userid, String username, String password, String firstName, String lastName, Date dateOfBirth,
 			String description, int gender, byte[] picture) {
 		super();
 		this.userid = userid;
@@ -102,11 +102,11 @@ public class Users implements Serializable{
 		this.username = username;
 	}
 
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -176,7 +176,7 @@ public class Users implements Serializable{
 		result = prime * result + ((followers == null) ? 0 : followers.hashCode());
 		result = prime * result + gender;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + password;
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + Arrays.hashCode(picture);
 		result = prime * result + userid;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
