@@ -16,6 +16,10 @@ public class Driver {
 		
 		IUserDAO dao = ac.getBean(IUserDAO.class);
 		
+		System.out.println("LOGIN:");
+		Users ul = dao.findByLogin("JaneDoe", "deer");
+		System.out.println(ul);
+		
 //		System.out.println("\n Find All");
 //		List<Users> users = dao.findAll();
 //		for(Users u : users){System.out.println(u);}

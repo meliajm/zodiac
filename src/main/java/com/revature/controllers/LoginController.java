@@ -1,5 +1,7 @@
 package com.revature.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +30,18 @@ public class LoginController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Users> login(@RequestBody String username, String password){
-		Users u = us.findByLogin(username, password);
+	public ResponseEntity<Users> login(@RequestBody Users u, HttpSession ses){
+		Users user = us.findByLogin(u.getUsername(), u.getPassword());
 		
-		if(u==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body(u);
+		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
+		ses.setAttribute("user", user);
+		ses.setAttribute("loggedin", true);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}
 	
 	@GetMapping
-	public void logout() {}
+	public void logout(HttpSession ses) {
+		ses.removeAttribute("user");
+	}
 
 }
