@@ -66,21 +66,21 @@ public class ServiceTest {
 //		assertNotNull(user1);
 //	}
 
-	@Test
-	public void select() {
-		System.out.println("SELECT:");
-		Users u1 = dao.findById(5);
-		System.out.println(u1);
-		assertNotNull(u1);
-		
-		Users u2 = dao.findById(25);
-		System.out.println(u2);
-		assertNull(u2);
-		
-		List<Users> user = dao.findAll();
-		System.out.println(user);
-		assertNotNull(user);
-	}
+//	@Test
+//	public void select() {
+//		System.out.println("SELECT:");
+//		Users u1 = dao.findById(5);
+//		System.out.println(u1);
+//		assertNotNull(u1);
+//		
+//		Users u2 = dao.findById(25);
+//		System.out.println(u2);
+//		assertNull(u2);
+//		
+//		List<Users> user = dao.findAll();
+//		System.out.println(user);
+//		assertNotNull(user);
+//	}
 	
 //	@Test
 //	public void login() {
