@@ -11,16 +11,11 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-<<<<<<< HEAD
-    	<build>
-	  	<finalName>Zodiac</finalName>
-	  </build>
-=======
-  
+	
   <build>
     <finalName>Zodiac</finalName>
   </build>
->>>>>>> master
+	
     <dependencies>
 	<dependency>
 		    <groupId>org.springframework</groupId>
