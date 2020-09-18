@@ -21,7 +21,6 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 @Component
 @Entity
 public class Users implements Serializable{
@@ -56,6 +55,9 @@ public class Users implements Serializable{
 	@JsonIgnore
 	private Set<Users> followers = new HashSet<Users>();
 	
+	@ManyToMany(mappedBy = "followers")
+	@JsonIgnore
+    private Set<Users> followees = new HashSet<Users>();
 
 	public Users() {}
 

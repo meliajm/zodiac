@@ -22,12 +22,25 @@ public class ServiceTest {
 	@Before
 	public void before() {System.out.println("\n Test:");}
 
+//	@Test
+//	public void insert() {
+//	//username, password, firstName, lastName, dateOfBirth, description, gender, picture
+//	Users u = new Users("JohnDoe", "johnny", "John", "Doe", new Date(), "", 1, null);
+//	Users u2 = new Users("JaneDoe", "deer", "Jane", "Doe", new Date(), "", 2, null);
+//	Users u3 = new Users("JillSmith", "willynilly", "Jill", "Smith", new Date(), "", 2, null);
+//	Users u4 = new Users("JoeSmith", "sloppy", "Joe", "Smith", new Date(), "", 1, null);
+//	Users u5 = new Users("DanSmith", "theman", "Dan", "Smith", new Date(), "", 1, null);
+//	//Insert
+//	dao.insert(u);dao.insert(u2);dao.insert(u3);dao.insert(u4);dao.insert(u5);
+//	System.out.println("INSERT");
+//	List<Users> all = dao.findAll();
+//	for(Users user: all) {System.out.println(user);}
+//	}
 	
 	@Test
 	public void update() {
 		System.out.println("UPDATE:");
-		
-		Users u = new Users(5, "DanielWilliam", "theman", "Daniel", "Williams", new Date(), "", 1, null);
+		Users u = new Users(5, "DanielleSmith", "thewoman", "Danielle", "Smith", new Date(), "", 1, null);
 		System.out.println(dao.findById(5));
 		Users update = dao.update(u);
 		System.out.println(u);
@@ -37,16 +50,20 @@ public class ServiceTest {
 	@Test
 	public void add() {
 		System.out.println("ADD:");
-		Users add = dao.addFollowers(2, 1);
-		System.out.println(add);
+		dao.addFollowers(5, 1);
+		dao.addFollowers(5, 2);
+		dao.addFollowers(5, 3);
+		
+		Users add = dao.addFollowers(1, 2);
+		System.out.println("Added Follower:"+add);
 		assertNotNull(add);
 	}
 	
 	@Test
 	public void remove() {
 		System.out.println("REMOVE:");
-		Users remove = dao.removeFollowers(2, 3);
-		System.out.println(remove);
+		Users remove = dao.removeFollowers(1, 2);
+		System.out.println("Removed Follower:"+remove);
 		assertNotNull(remove);
 	}
 	
