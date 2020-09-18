@@ -34,21 +34,21 @@ public class ServiceTest {
 		assertNotNull(update);
 	}
 	
-	@Test
-	public void add() {
-		System.out.println("ADD:");
-		Users add = dao.addFollowers(2, 1);
-		System.out.println(add);
-		assertNotNull(add);
-	}
+//	@Test
+//	public void add() {
+//		System.out.println("ADD:");
+//		Users add = dao.addFollowers(2, 1);
+//		System.out.println(add);
+//		assertNotNull(add);
+//	}
 	
-	@Test
-	public void remove() {
-		System.out.println("REMOVE:");
-		Users remove = dao.removeFollowers(2, 3);
-		System.out.println(remove);
-		assertNotNull(remove);
-	}
+//	@Test
+//	public void remove() {
+//		System.out.println("REMOVE:");
+//		Users remove = dao.removeFollowers(2, 3);
+//		System.out.println(remove);
+//		assertNotNull(remove);
+//	}
 	
 	@Test
 	public void follower() {
@@ -58,13 +58,13 @@ public class ServiceTest {
 		assertNotNull(user1);
 	}
 	
-	@Test
-	public void followee() {
-		System.out.println("FOLLOWED BY:");
-		List<Users> user1 = dao.findFollowees(2);
-		System.out.println(user1);
-		assertNotNull(user1);
-	}
+//	@Test
+//	public void followee() {
+//		System.out.println("FOLLOWED BY:");
+//		List<Users> user1 = dao.findFollowees(2);
+//		System.out.println(user1);
+//		assertNotNull(user1);
+//	}
 
 	@Test
 	public void select() {
@@ -82,13 +82,13 @@ public class ServiceTest {
 		assertNotNull(user);
 	}
 	
-	@Test
-	public void login() {
-		System.out.println("LOGIN:");
-		Users ul = dao.findByLogin("JaneDoe", "deer");
-		System.out.println(ul);
-		assertNotNull(ul);
-	}
+//	@Test
+//	public void login() {
+//		System.out.println("LOGIN:");
+//		Users ul = dao.findByLogin("JaneDoe", "deer");
+//		System.out.println(ul);
+//		assertNotNull(ul);
+//	}
 
 
 }
