@@ -17,9 +17,17 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Component
 @Entity
 public class Users implements Serializable{
+
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(nullable=false)
@@ -39,15 +47,19 @@ public class Users implements Serializable{
 	@Column(nullable=false)
 	private int gender;
 	private byte[] picture;
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	
+	
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinTable(name="user_follower",
 	 joinColumns=@JoinColumn(name="followeeid", referencedColumnName="userid"),
 	 inverseJoinColumns=@JoinColumn(name="followerid", referencedColumnName="userid"))
+	@JsonManagedReference
 	private Set<Users> followers = new HashSet<Users>();
 	
 	@ManyToMany(mappedBy = "followers")
+	@JsonBackReference
     private Set<Users> followees = new HashSet<Users>();
-	
+
 	public Users() {}
 
 	//Insert - Register User
