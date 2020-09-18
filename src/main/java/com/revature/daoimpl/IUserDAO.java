@@ -5,18 +5,18 @@ import java.util.List;
 import com.revature.models.Users;
 
 public interface IUserDAO {
+
+	public Users insert(Users u);
 	
-	public boolean insert(Users u);
+	public Users update(Users u);
 	
-	public boolean update(Users u);
+	public Users addFollowers(int id, int id2);
 	
-	public boolean addFollowers(Users u, Users u2);
-	
-	public boolean removeFollowers(Users u, Users u2);
+	public Users removeFollowers(int id, int id2);
 	
 	public Users findById(int id);
 	
-	public Users findByUsername(String username);
+	public Users findByLogin(String username, String password);
 	
 	public List<Users> findFollowers(int id);
 	

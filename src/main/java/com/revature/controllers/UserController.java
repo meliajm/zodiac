@@ -1,166 +1,63 @@
 package com.revature.controllers;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Users;
-import com.revature.services.UserService;
+import com.revature.daoimpl.IUserDAO;
 
+@Controller
+@RequestMapping(value="/user")
+@ResponseBody
+@CrossOrigin(origins="*", allowedHeaders="*")
 public class UserController {
-	private static UserService us = new UserService();
-	private static ObjectMapper om = new ObjectMapper();
 	
-	public void getUser(HttpServletResponse res, int id) throws IOException {
+	private IUserDAO us;
+	
+	@Autowired
+	public UserController(IUserDAO us) {
+		this.us = us; 
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	public List<Users> getAll(){
+		return us.findAll();
+	}
+	
+	@PostMapping
+	public ResponseEntity<Users> addUser(@RequestBody Users u){
+		u = us.insert(u);
+		
+		if(u==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
+		return ResponseEntity.status(HttpStatus.CREATED).body(u);
+	}
+	
+	@PutMapping
+	public ResponseEntity<Users> update(@RequestBody Users u){
+		u = us.update(u);
+		if(u==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(u);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Users> getUser(@PathVariable("id") int id){
 		Users u = us.findById(id);
 		
-		if(u == null) {
-			res.setStatus(204);
-		} else {
-			res.setStatus(200);
-			
-			String json = om.writeValueAsString(u);
-			res.getWriter().println(json);
-		}
-	}
-	
-	public void getFollowers(HttpServletResponse res, int id) throws IOException {
-		List<Users> u = us.findFollowers(id);
-		
-		if(u == null) {
-			res.setStatus(204);
-		} else {
-			res.setStatus(200);
-			
-			String json = om.writeValueAsString(u);
-			res.getWriter().println(json);
-		}
-	}
-	
-	public void getFollowees(HttpServletResponse res, int id) throws IOException {
-		List<Users> u = us.findFollowees(id);
-		
-		if(u == null) {
-			res.setStatus(204);
-		} else {
-			res.setStatus(200);
-			
-			String json = om.writeValueAsString(u);
-			res.getWriter().println(json);
-		}
-	}
-	
-	public void getAll(HttpServletResponse res) throws IOException {
-		List<Users> all = us.findAll();
-		
-		if(all.isEmpty()) {
-			res.setStatus(204);
-		} else {
-			res.setStatus(200);
-			
-			String json = om.writeValueAsString(all);
-			res.getWriter().println(json);
-		}
-	}
-	
-	public void addUser(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		BufferedReader reader = req.getReader();
-		
-		StringBuilder s = new StringBuilder();
-		
-		String line = reader.readLine();
-		
-		while(line != null) {
-			s.append(line);
-			line = reader.readLine();
-		}
-		
-		String body = new String(s);
-		
-		Users u = om.readValue(body, Users.class);
-		
-		if (us.insert(u)) {
-			res.setStatus(201);
-		} else {
-			res.setStatus(403);
-		}
-	}
-	
-	public void updateUser(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		BufferedReader reader = req.getReader();
-		
-		StringBuilder s = new StringBuilder();
-		
-		String line = reader.readLine();
-		
-		while(line != null) {
-			s.append(line);
-			line = reader.readLine();
-		}
-		
-		String body = new String(s);
-		
-		Users u = om.readValue(body, Users.class);
-		
-		if(us.update(u)) {
-			res.setStatus(200);
-		} else {
-			res.setStatus(403);
-		}
-	}
-	
-	public void addFollower(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		BufferedReader reader = req.getReader();
-		
-		StringBuilder s = new StringBuilder();
-		
-		String line = reader.readLine();
-		
-		while(line != null) {
-			s.append(line);
-			line = reader.readLine();
-		}
-		
-		String body = new String(s);
-		
-		Users u = om.readValue(body, Users.class);
-		
-		Users u2 = om.readValue(body, Users.class);
-		
-		if(us.addFollowers(u, u2)) {
-			res.setStatus(200);
-		} else {
-			res.setStatus(403);
-		}
-	}
-	
-	public void removeFollower(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		BufferedReader reader = req.getReader();
-		
-		StringBuilder s = new StringBuilder();
-		
-		String line = reader.readLine();
-		
-		while(line != null) {
-			s.append(line);
-			line = reader.readLine();
-		}
-		
-		String body = new String(s);
-		
-		Users u = om.readValue(body, Users.class);
-		
-		Users u2 = om.readValue(body, Users.class);
-		
-		if(us.removeFollowers(u, u2)) {
-			res.setStatus(200);
-		} else {
-			res.setStatus(403);
-		}
+		if(u==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(u);	
 	}
 
 }

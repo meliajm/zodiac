@@ -3,177 +3,137 @@ package com.revature.daos;
 import java.util.List;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.daoimpl.IUserDAO;
 import com.revature.models.Users;
-import com.revature.util.HibernateUtil;
 
+@Repository
+@Transactional
 public class UserDAO implements IUserDAO{
 
-	@Override
-	public boolean insert(Users u) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = null;
-
-		try {
-			tx = ses.beginTransaction();
-			
-			ses.save(u);
-			
-			tx.commit();
-			
-			return true;
-		} catch (Exception e) {
-			if (tx!=null) tx.rollback();
-			System.out.println(e);
-			return false;
-		}
-	}
-
-	@Override
-	public boolean update(Users u) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = null;
-
-		try {
-			tx = ses.beginTransaction();
-			
-			ses.merge(u);
-
-			tx.commit();
-			return true;
-		} catch (Exception e) {
-			if (tx!=null) tx.rollback();
-			System.out.println(e);
-			return false;
-		}
-
+	private SessionFactory sf;
+	
+	@Autowired
+	public UserDAO(SessionFactory sf) {
+		super();
+		this.sf = sf;
 	}
 	
 	@Override
-	public boolean addFollowers(Users u, Users u2) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = null;
+	public Users insert(Users u) {
+		Session ses = sf.getCurrentSession();
+		StringBuilder sb = new StringBuilder();
+		int pass = u.getPassword().hashCode();
+		sb.append(pass);
+		
+		String hashpass = sb.toString();
+		u.setPassword(hashpass);
+		ses.save(u);
+		return u;
+	}
 
-		try {
-			tx = ses.beginTransaction();
-			
-			if(u == u2) {
-				tx.rollback();
-				return false;
-			} else {
-				u.getFollowers().add(u2);
-	
-				ses.merge(u);
-				tx.commit();
-				return true;
-			}
-		} catch (Exception e) {
-			if (tx!=null) tx.rollback();
-			System.out.println(e);
-			return false;
-		}
+	@Override
+	public Users update(Users u) {
+		Session ses = sf.getCurrentSession();
+		StringBuilder sb = new StringBuilder();
+		int pass = u.getPassword().hashCode();
+		sb.append(pass);
+		
+		String hashpass = sb.toString();
+		u.setPassword(hashpass);
+		ses.merge(u);
+		return u;
 	}
 	
 	@Override
-	public boolean removeFollowers(Users u, Users u2) {
-		Session ses = HibernateUtil.getSession();
-		Transaction tx = null;
-
-		try {
-			tx = ses.beginTransaction();
-			
-			if(u == u2) {
-				tx.rollback(); 
-				return false;
-			} else {
-				u.getFollowers().remove(u2);
+	public Users addFollowers(int id, int id2) {
+		Session ses = sf.getCurrentSession();
+		
+		Users user = findById(id);
+		Users user2 = findById(id2);
+		
+		user.getFollowers().add(user2);
+		ses.merge(user);
+		
+		return user;
+	}
 	
-				ses.merge(u);
-				tx.commit();
-				
-				return true;
-			}
-		} catch (Exception e) {
-			if (tx!=null) tx.rollback();
-			System.out.println(e);
-			return false;
-		}
+	@Override
+	public Users removeFollowers(int id, int id2) {
+		Session ses = sf.getCurrentSession();
+		
+		Users user = findById(id);	
+		Users user2 = findById(id2);
+ 		
+		user.getFollowers().remove(user2);
+		ses.merge(user);
+		
+		return user;
 	}
 	
 	@Override
 	public List<Users> findAll() {
-		Session ses = HibernateUtil.getSession();
+		Session ses = sf.getCurrentSession();
 		String hql = "FROM Users";
 		
 		@SuppressWarnings("unchecked")
 		Query<Users> query = ses.createQuery(hql);
 		List<Users> all = query.list();
 		
-		if(all.isEmpty()) {
-			return null;
-		}else {
-			return all;
-		}
+		return all;
 	}
 
 	@Override
 	public Users findById(int id) {
-		Session ses = HibernateUtil.getSession();
-		Users u = ses.get(Users.class, id);
-		
-		if(u != null) {
-			return u;
-		}else {
-			return null;
-		}
+		Session ses = sf.getCurrentSession();
+		return ses.get(Users.class, id);
 	}
 
 	//FIND WHO YOU'RE FOLLOWING
 	@Override
 	public List<Users> findFollowers(int id){
-		Session ses = HibernateUtil.getSession();
-
+		Session ses = sf.getCurrentSession();
 		String hql = "SELECT follow FROM Users u JOIN u.followers follow WHERE u.id = :u";
 		
 		@SuppressWarnings("unchecked")
 		Query<Users> query = ses.createQuery(hql).setParameter("u", id);
 		List<Users> all = query.list();
-
-		if(all.isEmpty()) {
-			return null;
-		} 
+		
 		return all;
 	}
 	
 	//FIND WHOSE FOLLOWS YOU
 	@Override
 	public List<Users> findFollowees(int id){
-		Session ses = HibernateUtil.getSession();
-		
+		Session ses = sf.getCurrentSession();
 		String hql = "SELECT follow FROM Users u JOIN u.followees follow WHERE u.id = :u";
 		
 		@SuppressWarnings("unchecked")
 		Query<Users> query = ses.createQuery(hql).setParameter("u", id);
 		List<Users> all = query.list();
-
-		if(all.isEmpty()) {
-			return null;
-		} 
-
+		
 		return all;
 	}
 	
 	@Override
-	public Users findByUsername(String username) {
-		Session ses = HibernateUtil.getSession();
-		String hql = "FROM User u WHERE u.username = :u";
+	public Users findByLogin(String username, String password) {
+		Session ses = sf.getCurrentSession();
+		String hql = "FROM Users u WHERE u.username = :u AND u.password = :p";
+		StringBuilder sb = new StringBuilder();
+		int pass = password.hashCode();
+		sb.append(pass);
 		
-		Query<Users> query = ses.createQuery(hql, Users.class).setParameter("u", username);
+		String hashpass = sb.toString();
+
+		Query<Users> query = ses.createQuery(hql, Users.class).setParameter("u", username).setParameter("p", hashpass);
 		Users u = query.list().get(0);
 		
 		return u;
 	}
+	
 }
