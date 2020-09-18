@@ -1,0 +1,12 @@
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/web/filters/CorsFilter.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/Driver.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/util/HibernateUtil.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/models/Users.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/services/LoginService.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/controllers/LoginController.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/daoimpl/IUserDAO.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/models/LoginDTO.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/controllers/UserController.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/services/UserService.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/web/MasterServlet.java
+/Users/melia/Development/training/zodiac/src/main/java/com/revature/daos/UserDAO.java
