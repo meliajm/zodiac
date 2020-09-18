@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
+    <wb-module deploy-name="Zodiac">
+=======
         
     <wb-module deploy-name="Zodiac">
                 
+>>>>>>> master
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
                 
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
@@ -15,7 +19,10 @@
                 
         <property name="java-output-path" value="/zodiac/target/classes"/>
         <property name="context-root" value="Zodiac"/>
+<<<<<<< HEAD
+=======
             
+>>>>>>> master
     </wb-module>
     
 </project-modules>

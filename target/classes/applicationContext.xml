@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/mvc 
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+  
+    <context:component-scan base-package="com.revature"></context:component-scan>
+    <mvc:annotation-driven/>
+    <tx:annotation-driven/>
+ 
+	 <bean id="ourDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="org.postgresql.Driver"></property>
+	    <property name="url" value="jdbc:postgresql://javafs200803.czjvsq707ohh.us-east-2.rds.amazonaws.com:5432/postgres2"/>
+	    <property name="username" value="postgres" />
+	    <property name="password" value="password" />
+	 </bean>
+    
+    <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" name="sessionFactory">
+		<property name="dataSource" ref="ourDataSource"/>
+		<property name="packagesToScan" value="com.revature"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="show_sql">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.event.merge.entity_copy_observer">allow</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" name="transactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="nestedTransactionAllowed" value="true"/>
+	</bean>
+
+</beans>
