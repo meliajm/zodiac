@@ -19,8 +19,8 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Component
 @Entity
@@ -49,16 +49,13 @@ public class Users implements Serializable{
 	private byte[] picture;
 	
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name="user_follower",
 	 joinColumns=@JoinColumn(name="followeeid", referencedColumnName="userid"),
 	 inverseJoinColumns=@JoinColumn(name="followerid", referencedColumnName="userid"))
-	@JsonManagedReference
+	@JsonIgnore
 	private Set<Users> followers = new HashSet<Users>();
 	
-	@ManyToMany(mappedBy = "followers")
-	@JsonBackReference
-    private Set<Users> followees = new HashSet<Users>();
 
 	public Users() {}
 
@@ -185,11 +182,9 @@ public class Users implements Serializable{
 		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((followers == null) ? 0 : followers.hashCode());
 		result = prime * result + gender;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + Arrays.hashCode(picture);
 		result = prime * result + userid;
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
@@ -219,11 +214,6 @@ public class Users implements Serializable{
 				return false;
 		} else if (!firstName.equals(other.firstName))
 			return false;
-		if (followers == null) {
-			if (other.followers != null)
-				return false;
-		} else if (!followers.equals(other.followers))
-			return false;
 		if (gender != other.gender)
 			return false;
 		if (lastName == null) {
@@ -232,8 +222,6 @@ public class Users implements Serializable{
 		} else if (!lastName.equals(other.lastName))
 			return false;
 		if (password != other.password)
-			return false;
-		if (!Arrays.equals(picture, other.picture))
 			return false;
 		if (userid != other.userid)
 			return false;

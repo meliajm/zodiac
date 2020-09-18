@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.models.UserDTO;
 import com.revature.models.Users;
 import com.revature.daoimpl.IUserDAO;
 
@@ -38,11 +40,12 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Users> addUser(@RequestBody Users u){
-		u = us.insert(u);
+	public ResponseEntity<Users> addUser(@RequestBody UserDTO ud){
+		Users u = new Users(ud.username, ud.password, ud.firstName,ud.lastName, ud.dateOfBirth,ud.description, ud.gender, ud.picture);
+		Users user = us.insert(u);
 		
-		if(u==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
-		return ResponseEntity.status(HttpStatus.CREATED).body(u);
+		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
+		return ResponseEntity.status(HttpStatus.CREATED).body(user);
 	}
 	
 	@PutMapping

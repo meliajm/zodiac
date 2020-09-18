@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.revature.models.FollowerDTO;
+import com.revature.models.UserDTO;
 import com.revature.models.Users;
 import com.revature.daoimpl.IUserDAO;
 
@@ -39,8 +41,8 @@ public class FollowerController {
 	}
 			
 	@PutMapping("/add/{id}")
-	public ResponseEntity<Users> addFollower(@PathVariable("id") int id, @RequestBody int id2){
-		Users user = us.addFollowers(id, id2);
+	public ResponseEntity<Users> addFollower(@PathVariable("id") int id, @RequestBody FollowerDTO ud){
+		Users user = us.addFollowers(id, ud.id);
 		if(user==null) {return ResponseEntity.status(HttpStatus.NO_CONTENT).build();}
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}

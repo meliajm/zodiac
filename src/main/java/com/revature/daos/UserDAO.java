@@ -60,7 +60,7 @@ public class UserDAO implements IUserDAO{
 		user.getFollowers().add(user2);
 		ses.merge(user);
 		
-		return user;
+		return findById(id);
 	}
 	
 	@Override
