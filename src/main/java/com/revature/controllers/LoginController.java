@@ -39,7 +39,7 @@ public class LoginController {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}
 	
-	@GetMapping
+	@GetMapping("/logout")
 	public void logout(HttpSession ses) {
 		ses.removeAttribute("user");
 	}
