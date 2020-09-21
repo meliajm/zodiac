@@ -134,6 +134,5 @@ public class UserDAO implements IUserDAO{
 		Users u = query.list().get(0);
 		
 		return u;
-	}
-	
+	}	
 }
